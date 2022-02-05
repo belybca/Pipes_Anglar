@@ -6,14 +6,62 @@
 </div>
 
 <div class="grid">
-    <div class="col md-6">
+    <div class="col-6 md-6">
         <p-fieldset legend="i18nSelect Pipe" [toggleable]="true">
-            Content
+           <ul>
+            <li>Saludos {{name}}, es un placer 
+            {{gender | i18nSelect:innviteMap}}
+            a nuestro evento</li>
+        </ul>
+        <button pButton class="p-button-warning" label="Change Person" icon="pi pi-users" iconPos="right" (click)="changePerson()"></button>
         </p-fieldset>
     </div>
-    <div class="col md-6">
-        <p-fieldset legend="i18nPliral Pipe" [toggleable]="true">
-            Content
+    <div class="col-6 md-6">
+        <p-fieldset legend="i18nPlural Pipe" [toggleable]="true">
+            <ul>
+                <li>Actualmente tenemos {{clients.length | i18nPlural:clientsMap }} </li>
+            </ul>
+            <button pButton class="p-button-warning" label="Remove Client" icon="pi pi-user" iconPos="right" (click)="removeClient()"></button>
         </p-fieldset>
     </div>
+
+
+    <div class="col-6 md-6">
+        <p-fieldset legend="Json Pipe" [toggleable]="true">
+          <pre>{{heroes | json }}</pre>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6 md-6">
+        <p-fieldset legend="Slice Pipe" [toggleable]="true">
+           <b>Original</b>
+           <pre>{{clients}}</pre>
+           <b>Slice: 0</b>
+           <pre>{{clients | slice:0}}</pre>
+           <b>Slice: 0:2</b>
+           <pre>{{clients | slice:0:2}}</pre>
+           <b>Slice: 1:2</b>
+           <pre>{{clients | slice:1:2}}</pre>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6 md-6">
+        <p-fieldset legend="Key Value Pipe" [toggleable]="true">
+           <ul>
+               <li *ngFor="let item of persona | keyvalue"><b>{{item.key |titlecase}} :</b> {{item.value}}</li>
+           </ul>
+        </p-fieldset>
+    </div>
+
+    <div class="col-6 md-6">
+        <p-fieldset legend="Async Pipe" [toggleable]="true">
+            <pre *ngIf="!(myObservable | async); else elseTemplate">cargando</pre>
+            <ng-template #elseTemplate>
+                <pre>{{myObservable | async}}</pre>
+            </ng-template>
+          <pre *ngIf="!(valPromise | async)">Resolviendo Promesa</pre>
+          <pre>{{valPromise | async}}</pre>
+        </p-fieldset>
+    </div>
+    
 </div>
