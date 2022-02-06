@@ -7,3 +7,6 @@ html,body{
 .text-layout{
     color: var(--text-color)
 }
+.text-subtitle{
+    color: var(--text-color-secondary)
+}
